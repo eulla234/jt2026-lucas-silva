@@ -1,47 +1,42 @@
-# Hackathon Jovens Talentos AI Builder 2026 — Seazone
-
-## 👉 Leia o desafio aqui
-
-### **[ABRIR O DESAFIO COMPLETO](https://seazone-tech.github.io/jovens-talentos-2026-hackathon-data/)**
-
-Lá está tudo: a missão, os dados, **o que entregar**, as regras, o prazo e **como vamos avaliar**.
-Leia antes de começar a mexer nos dados.
-
-> Se o link acima não abrir, o mesmo conteúdo está no arquivo [`index.html`](index.html) deste repositório
-> (baixe e abra no navegador).
+# Análise de Investimento Imobiliário — Itapema/SC
+## Desafio Jovens Talentos AI Builder — Seazone
 
 ---
 
-## Primeiro passo
+## 📂 ONDE ESTÁ CADA COISA?
 
-**Faça um _fork_ deste repositório.** É nele que você vai trabalhar e é ele que você entrega.
-
----
-
-## Os dados (`data/`)
-
-Snapshot estático do mercado imobiliário de **Itapema (SC)**, com anúncios de Airbnb e de venda (VivaReal).
-É a mesma base para todos os candidatos, para garantir comparação justa.
-
-| Arquivo | O que tem | Como conecta |
-|---|---|---|
-| `Details_Itapema.csv` | Cada anúncio de Airbnb: título, reviews, star rating, descrição, host_id, nº de quartos, tipo de imóvel | Base principal dos listings |
-| `Hosts_ids_Itapema.csv` | Dados do anfitrião: nº de reviews, anos como host, superhost, taxa de resposta | Liga com Details pelo `owner_id` |
-| `Mesh_Ids_Data_Itapema.csv` | Latitude/longitude + bairro de cada anúncio | Liga por listing |
-| `Price_AV_Itapema.csv` | Preço por anúncio, por data de estadia e por data de captura | Liga por listing |
-| `VivaReal_Itapema.csv` | Anúncios de venda: preço, condomínio, área, vendedor | Mercado de compra |
+| Arquivo / Pasta | O que contém |
+|---|---|
+| `RELATORIO_FINAL_INVESTIMENTO.md` | ← ✅ **RESPOSTA OFICIAL E COMPLETA — LEIA ESTA PRIMEIRO!** Análise, metodologia, tabelas, recomendação e posição sobre a tese |
+| `RELATORIO_INVESTIMENTO.md` | Versão intermediária (registro de processo) |
+| `ai-log/session-atualizada-final.md` | ← ✅ **CONVERSA COMPLETA COM A IA — VERSÃO FINAL** |
+| `ai-log/session-ses_fbba.md` | Versão anterior da conversa (registro de processo) |
+| `analysis/` | Planilhas consolidada, CSVs, dashboard e todos os cálculos de apoio |
+| `data/` | Dados originais do desafio |
 
 ---
 
-## Resumo do que você entrega
+## ▶️ COMO CONSULTAR A ENTREGA:
 
-1. **Este repositório, forkado e público**, com a sua análise, o `README.md` explicando como rodar,
-   a pasta `ai-log/` (conversas com a IA **em texto**) e a recomendação final escrita.
-2. **Vídeo de até 3 minutos** no Google Drive, com o link na primeira linha do seu README.
-
-O detalhe de cada item, o prazo e o formulário de entrega estão no
-**[desafio completo](https://seazone-tech.github.io/jovens-talentos-2026-hackathon-data/)**.
+1. **Resposta principal:** Abra primeiro → `RELATORIO_FINAL_INVESTIMENTO.md`
+2. **Números e planilhas:** Consulte a pasta → `analysis/`
+3. **Processo completo:** Veja a conversa com a IA em → `ai-log/session-atualizada-final.md`
 
 ---
 
-*Seazone — Jovens Talentos AI Builder 2026*
+## 🏆 RESUMO EXECUTIVO
+
+### Melhor perfil de imóvel:
+> Apartamento de **2 a 3 quartos** — melhor equilíbrio entre preço de compra, diária de temporada e liquidez de revenda.
+
+### Melhor localização:
+> 🥇 **Morretes** e **Tabuleiro dos Oliveiras** — imóveis custam até 3x menos que na orla, mas com diária quase igual → rendem o DOBRO ou TRIPLO do investimento.
+
+### Posição sobre a Tese dos Compactos no Centro:
+> ❌ **NÃO se sustenta pelos dados.**
+> - ✅ Compactos (studio/1 quarto) SÃO bons quando comprados em bairros baratos
+> - ❌ No Centro, o preço está inflado → retorno cai pela metade (apenas 8–10% ao ano)
+> - 📌 **Conclusão:** A tese acertou no TIPO (imóveis menores são eficientes), mas ERROU no LOCAL. O Centro é péssima escolha pelo preço cobrado.
+
+### Melhor recomendação de investimento hoje:
+> Apartamento de **2 quartos em Morretes** por R$ 350 mil → **21,2% de retorno líquido ao ano** → recupera todo o investimento em **4,7 anos**.
