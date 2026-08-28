@@ -9,9 +9,9 @@
 |---|---|
 | `RELATORIO_FINAL_INVESTIMENTO.md` | ← ✅ **RESPOSTA OFICIAL E COMPLETA — LEIA ESTA PRIMEIRO!** Análise, metodologia, tabelas, recomendação e posição sobre a tese |
 | `RELATORIO_INVESTIMENTO.md` | Versão intermediária (registro de processo) |
-| `ai-log/session-atualizada-final.md` | ← ✅ **CONVERSA COMPLETA COM A IA — VERSÃO FINAL** |
-| `ai-log/session-ses_fbba.md` | Versão anterior da conversa (registro de processo) |
-| `analysis/` | Planilhas consolidada, CSVs, dashboard e todos os cálculos de apoio |
+| `ai-log/log-bruto.md` | Exportação bruta direta da ferramenta OpenCode |
+| `ai-log/session-atualizada-final.md` | ← ✅ **CONVERSA COMPLETA E CONSOLIDADA — do início ao fim** |
+| `analysis/` | Planilha consolidada, CSVs, dashboard e todos os cálculos de apoio |
 | `data/` | Dados originais do desafio |
 
 ---
@@ -20,8 +20,8 @@
 
 1. **Resposta principal:** Abra primeiro → `RELATORIO_FINAL_INVESTIMENTO.md`
 2. **Números e planilhas:** Consulte a pasta → `analysis/`
-3. **Processo completo:** Veja a conversa com a IA em → `ai-log/session-atualizada-final.md`
-
+3. **Processo completo:** Veja a conversa consolidada em → `ai-log/session-atualizada-final.md`
+   - Arquivo bruto original disponível em → `ai-log/log-bruto.md`
 ---
 
 ## 🏆 RESUMO EXECUTIVO
