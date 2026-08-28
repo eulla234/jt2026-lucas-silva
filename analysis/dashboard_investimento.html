@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Itapema — Ranking de Investimento em Aluguel de Temporada (Short Stay)</title>
+<style>
+  :root{
+    --azul:#0b3a5c; --azul2:#14649c; --verde:#1f7a4d; --verde-claro:#e7f5ec;
+    --dourado:#c98a1b; --fundo:#f4f7fa; --cinza:#5a6b7a; --borda:#d9e2ea;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Segoe UI', Roboto, Arial, sans-serif; background:var(--fundo); color:#1c2b36; line-height:1.5;}
+  .wrap{max-width:1180px; margin:0 auto; padding:24px;}
+
+  header{background:linear-gradient(135deg,var(--azul) 0%,var(--azul2) 100%); color:#fff; padding:34px 24px;}
+  header .wrap{max-width:1180px;}
+  header h1{font-size:26px; font-weight:600; letter-spacing:.2px;}
+  header p{opacity:.85; margin-top:6px; font-size:14px;}
+  .badges{margin-top:16px; display:flex; flex-wrap:wrap; gap:8px;}
+  .badge{background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.25); padding:4px 12px; border-radius:20px; font-size:12px;}
+
+  .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin:26px 0;}
+  .kpi{background:#fff; border:1px solid var(--borda); border-left:5px solid var(--azul2); border-radius:10px; padding:16px 18px;}
+  .kpi .rotulo{font-size:12px; color:var(--cinza); text-transform:uppercase; letter-spacing:.4px;}
+  .kpi .valor{font-size:24px; font-weight:700; color:var(--azul); margin-top:6px;}
+  .kpi .detalhe{font-size:12px; color:var(--cinza); margin-top:4px;}
+  .kpi.destaque{border-left-color:var(--verde); background:var(--verde-claro);}
+  .kpi.destaque .valor{color:var(--verde);}
+
+  section{background:#fff; border:1px solid var(--borda); border-radius:12px; padding:24px; margin-bottom:24px;}
+  h2{font-size:19px; color:var(--azul); margin-bottom:4px;}
+  .sub{font-size:13px; color:var(--cinza); margin-bottom:18px;}
+
+  .perfil-destaque{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; background:var(--verde-claro); border:1px solid #b8dfc6; border-radius:10px; padding:18px; margin-bottom:20px;}
+  .perfil-destaque .item .lbl{font-size:12px; color:#2e5c41; font-weight:600; text-transform:uppercase; letter-spacing:.4px;}
+  .perfil-destaque .item .val{font-size:20px; font-weight:700; color:var(--verde); margin-top:4px;}
+  .perfil-destaque .item .val small{font-size:13px; color:#3c7a58; font-weight:500;}
+
+  table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  th{background:var(--azul); color:#fff; text-align:left; padding:9px 10px; font-weight:600;}
+  td{padding:9px 10px; border-bottom:1px solid #e4ebf1; vertical-align:top;}
+  tr:nth-child(even) td{background:#f8fafc;}
+  .tnum{text-align:right; font-variant-numeric:tabular-nums;}
+  tr.dest td{background:#e7f5ec;}
+  .tag{display:inline-block; padding:2px 10px; border-radius:12px; font-size:12px; font-weight:600;}
+  .tag.top{background:var(--verde-claro); color:var(--verde);}
+  .tag.medio{background:#fdf3e0; color:var(--dourado);}
+  .tag.baixo{background:#fbeaea; color:#b03a2e;}
+
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  @media(max-width:820px){.grid2{grid-template-columns:1fr;}}
+
+  .saz{display:flex; align-items:flex-end; gap:14px; height:150px; padding-top:10px;}
+  .saz .col{flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; text-align:center; gap:6px;}
+  .saz .bar{width:80%; background:var(--azul2); border-radius:5px 5px 0 0; transition:height .3s; position:relative;}
+  .saz .val{font-size:12px; font-weight:700; color:var(--azul);}
+  .saz .lbl{font-size:12px; color:var(--cinza);}
+
+  .lista{padding-left:20px; font-size:14px;}
+  .lista li{margin-bottom:8px;}
+  .nota{font-size:12.5px; color:var(--cinza); background:#f4f7fa; border-left:3px solid var(--dourado); padding:10px 14px; border-radius:4px; margin-top:12px;}
+  footer{text-align:center; color:var(--cinza); font-size:12px; padding:22px 0 30px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Ranking de Investimento Imobiliário — Itapema (SC)</h1>
+    <p>Aluguel de temporada (short stay) • Baseado em reanálise integral dos dados-fonte (Airbnb + VivaReal) • Referência: jan–abr/2025</p>
+    <div class="badges">
+      <span class="badge">5 arquivos-fonte auditados</span>
+      <span class="badge">Preços deduplicados por data</span>
+      <span class="badge">Somente apartamentos</span>
+      <span class="badge">Yield líquido (com custos)</span>
+      <span class="badge">Pronto para decisão</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- Indicadores-chave -->
+  <div class="kpis">
+    <div class="kpi">
+      <div class="rotulo">Anúncios Airbnb analisados</div>
+      <div class="valor">911</div>
+      <div class="detalhe">apartamentos com preço válido</div>
+    </div>
+    <div class="kpi">
+      <div class="rotulo">Ofertas de venda analisadas</div>
+      <div class="valor">7.529</div>
+      <div class="detalhe">apartamentos com preço e área</div>
+    </div>
+    <div class="kpi">
+      <div class="rotulo">Diária média da cidade</div>
+      <div class="valor">R$ 693</div>
+      <div class="detalhe">por noite</div>
+    </div>
+    <div class="kpi destaque">
+      <div class="rotulo">Melhor yield líquido</div>
+      <div class="valor">15,2% a.a.</div>
+      <div class="detalhe">3 quartos — Tabuleiro dos Oliveiras</div>
+    </div>
+    <div class="kpi destaque">
+      <div class="rotulo">Melhor tempo de retorno</div>
+      <div class="valor">6,6 anos</div>
+      <div class="detalhe">3 quartos — Tabuleiro dos Oliveiras</div>
+    </div>
+  </div>
+
+  <!-- Perfil recomendado -->
+  <section>
+    <h2>Perfil de imóvel recomendado</h2>
+    <p class="sub">Posição definitiva com base no ranking (dados medianos de mercado)</p>
+    <div class="perfil-destaque">
+      <div class="item"><div class="lbl">Tipo de imóvel</div><div class="val">Apartamento</div></div>
+      <div class="item"><div class="lbl">Número de quartos</div><div class="val">3 quartos</div></div>
+      <div class="item"><div class="lbl">Localização</div><div class="val">Tabuleiro dos Oliveiras ou Morretes</div></div>
+      <div class="item"><div class="lbl">Preço de aquisição</div><div class="val">R$ 810 mil a R$ 845 mil</div></div>
+      <div class="item"><div class="lbl">Diária média de locação</div><div class="val">R$ 680 a R$ 790 <small>/ noite</small></div></div>
+      <div class="item"><div class="lbl">Retorno líquido anual</div><div class="val">12,4% a 15,2% <small>a.a.</small></div></div>
+    </div>
+    <p style="font-size:14px;">
+      <strong>Por quê:</strong> preço de entrada ≤ R$ 845 mil com diária ≥ R$ 680 — a "regra de ouro" (comprar barato onde o mercado paga diária alta). Retorno do capital em 6,6 a 8,1 anos.
+      <strong>Formato:</strong> short stay por diária, operação profissional.
+    </p>
+    <div class="nota"><strong>Ressalva de amostra:</strong> o perfil 3q Tabuleiro tem poucos anúncios Airbnb (4). O 3q Morretes é a alternativa com amostra mais sólida (10 anúncios; 155 imóveis à venda). Recomendamos validar localmente antes do fechamento.</div>
+  </section>
+
+  <!-- Ranking -->
+  <section>
+    <h2>Ranking definitivo — ordem de prioridade de compra</h2>
+    <p class="sub">Ordenado por yield líquido (receita líquida anual ÷ preço). Amostra mínima: ≥3 anúncios Airbnb e ≥5 ofertas de venda.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>Perfil</th><th>Bairro</th><th class="tnum">Diária med.</th><th class="tnum">Preço de venda</th>
+          <th class="tnum">Rec. líquida/ano</th><th class="tnum">Yield líquido</th><th class="tnum">Tempo de retorno</th><th>Amostra</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="dest"><td>1</td><td><strong>Apartamento de 3 quartos</strong></td><td><strong>Tabuleiro dos Oliveiras</strong></td>
+          <td class="tnum">R$ 790</td><td class="tnum">R$ 810 mil</td><td class="tnum">R$ 123,6 mil</td>
+          <td class="tnum"><span class="tag top">15,2% a.a.</span></td><td class="tnum">6,6 anos</td><td>⚠️ pequena (4)</td></tr>
+        <tr class="dest"><td>2</td><td><strong>Apartamento de 1 quarto (compacto)</strong></td><td><strong>Morretes</strong></td>
+          <td class="tnum">R$ 533</td><td class="tnum">R$ 600 mil</td><td class="tnum">R$ 81,6 mil</td>
+          <td class="tnum"><span class="tag top">13,6% a.a.</span></td><td class="tnum">7,4 anos</td><td>⚠️ pequena (4)</td></tr>
+        <tr class="dest"><td>3</td><td><strong>Apartamento de 3 quartos</strong></td><td><strong>Morretes</strong></td>
+          <td class="tnum">R$ 680</td><td class="tnum">R$ 845 mil</td><td class="tnum">R$ 104,8 mil</td>
+          <td class="tnum"><span class="tag top">12,4% a.a.</span></td><td class="tnum">8,1 anos</td><td>✅ (10)</td></tr>
+        <tr><td>4</td><td>Apartamento de 2 quartos</td><td>Tabuleiro dos Oliveiras</td>
+          <td class="tnum">R$ 484</td><td class="tnum">R$ 781 mil</td><td class="tnum">R$ 75,0 mil</td>
+          <td class="tnum"><span class="tag medio">9,6% a.a.</span></td><td class="tnum">10,5 anos</td><td>✅ (12)</td></tr>
+        <tr><td>5</td><td>Apartamento de 2 quartos</td><td>Morretes</td>
+          <td class="tnum">R$ 480</td><td class="tnum">R$ 790 mil</td><td class="tnum">R$ 74,3 mil</td>
+          <td class="tnum"><span class="tag medio">9,4% a.a.</span></td><td class="tnum">10,7 anos</td><td>✅ (50)</td></tr>
+        <tr><td>6</td><td>Apartamento de 1 quarto</td><td>Meia Praia</td>
+          <td class="tnum">R$ 513</td><td class="tnum">R$ 875 mil</td><td class="tnum">R$ 77,9 mil</td>
+          <td class="tnum"><span class="tag medio">8,9% a.a.</span></td><td class="tnum">11,2 anos</td><td>✅ (19)</td></tr>
+        <tr><td>7</td><td>Apartamento de 2 quartos</td><td>Casa Branca</td>
+          <td class="tnum">R$ 377</td><td class="tnum">R$ 660 mil</td><td class="tnum">R$ 56,8 mil</td>
+          <td class="tnum"><span class="tag medio">8,6% a.a.</span></td><td class="tnum">11,7 anos</td><td>✅ (11)</td></tr>
+        <tr><td>8</td><td>Apartamento de 2 quartos</td><td>Centro</td>
+          <td class="tnum">R$ 600</td><td class="tnum">R$ 1,15 milhão</td><td class="tnum">R$ 94,3 mil</td>
+          <td class="tnum"><span class="tag medio">8,2% a.a.</span></td><td class="tnum">12,2 anos</td><td>✅ (65)</td></tr>
+        <tr><td>9</td><td>Apartamento de 1 quarto (compacto)</td><td>Centro</td>
+          <td class="tnum">R$ 456</td><td class="tnum">R$ 890 mil</td><td class="tnum">R$ 68,5 mil</td>
+          <td class="tnum"><span class="tag medio">7,7% a.a.</span></td><td class="tnum">13,0 anos</td><td>✅ (78)</td></tr>
+        <tr><td>10</td><td>Apartamento de 2 quartos</td><td>Canto da Praia</td>
+          <td class="tnum">R$ 544</td><td class="tnum">R$ 1,22 milhão</td><td class="tnum">R$ 85,4 mil</td>
+          <td class="tnum"><span class="tag medio">7,0% a.a.</span></td><td class="tnum">14,3 anos</td><td>⚠️ pequena (4)</td></tr>
+        <tr><td>11</td><td>Apartamento de 2 quartos</td><td>Meia Praia</td>
+          <td class="tnum">R$ 483</td><td class="tnum">R$ 1,08 milhão</td><td class="tnum">R$ 74,5 mil</td>
+          <td class="tnum"><span class="tag medio">6,9% a.a.</span></td><td class="tnum">14,5 anos</td><td>✅ (186)</td></tr>
+        <tr><td>12</td><td>Apartamento de 3 quartos</td><td>Centro</td>
+          <td class="tnum">R$ 771</td><td class="tnum">R$ 2,10 milhões</td><td class="tnum">R$ 119,7 mil</td>
+          <td class="tnum"><span class="tag baixo">5,7% a.a.</span></td><td class="tnum">17,5 anos</td><td>✅ (44)</td></tr>
+        <tr><td>13</td><td>Apartamento de 3 quartos</td><td>Meia Praia</td>
+          <td class="tnum">R$ 700</td><td class="tnum">R$ 1,88 milhão</td><td class="tnum">R$ 107,5 mil</td>
+          <td class="tnum"><span class="tag baixo">5,7% a.a.</span></td><td class="tnum">17,5 anos</td><td>✅ (327)</td></tr>
+        <tr><td>14</td><td>Apartamento de 4 quartos</td><td>Meia Praia</td>
+          <td class="tnum">R$ 1.137</td><td class="tnum">R$ 3,60 milhões</td><td class="tnum">R$ 177,6 mil</td>
+          <td class="tnum"><span class="tag baixo">4,9% a.a.</span></td><td class="tnum">20,3 anos</td><td>✅ (59)</td></tr>
+        <tr><td>15</td><td>Apartamento de 5 quartos</td><td>Meia Praia</td>
+          <td class="tnum">R$ 1.837</td><td class="tnum">R$ 8,00 milhões</td><td class="tnum">R$ 285,8 mil</td>
+          <td class="tnum"><span class="tag baixo">3,6% a.a.</span></td><td class="tnum">27,8 anos</td><td>⚠️ pequena (5)</td></tr>
+        <tr><td>16</td><td>Apartamento de 4 quartos</td><td>Centro</td>
+          <td class="tnum">R$ 713</td><td class="tnum">R$ 3,70 milhões</td><td class="tnum">R$ 102,9 mil</td>
+          <td class="tnum"><span class="tag baixo">2,8% a.a.</span></td><td class="tnum">35,3 anos</td><td>⚠️ pequena (4)</td></tr>
+        <tr><td>17</td><td>Apartamento de 4 quartos</td><td>Morretes</td>
+          <td class="tnum">R$ 1.117</td><td class="tnum">R$ 6,10 milhões</td><td class="tnum">R$ 172,6 mil</td>
+          <td class="tnum"><span class="tag baixo">2,8% a.a.</span></td><td class="tnum">35,1 anos</td><td>⚠️ pequena (3)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Posição compactos -->
+  <section>
+    <h2>Posição clara sobre os compactos (studio / 1 quarto)</h2>
+    <p class="sub">Pergunta central da Seazone — respondida com os dados medianos de mercado (não com exceções)</p>
+    <table>
+      <thead><tr><th>Perfil compacto</th><th class="tnum">Preço de venda</th><th class="tnum">Diária</th><th class="tnum">Yield líquido</th><th class="tnum">Tempo de retorno</th><th>Amostra</th></tr></thead>
+      <tbody>
+        <tr class="dest"><td><strong>Compacto 1q — Morretes</strong></td><td class="tnum">R$ 600 mil</td><td class="tnum">R$ 533</td><td class="tnum"><span class="tag top">13,6% a.a.</span></td><td class="tnum">7,4 anos</td><td>⚠️ pequena (4)</td></tr>
+        <tr><td>Compacto 1q — Meia Praia</td><td class="tnum">R$ 875 mil</td><td class="tnum">R$ 513</td><td class="tnum"><span class="tag medio">8,9% a.a.</span></td><td class="tnum">11,2 anos</td><td>✅ (19)</td></tr>
+        <tr><td><strong>Compacto 1q — Centro</strong> (aposta interna)</td><td class="tnum">R$ 890 mil</td><td class="tnum">R$ 456</td><td class="tnum"><span class="tag medio">7,7% a.a.</span></td><td class="tnum">13,0 anos</td><td>✅ (78)</td></tr>
+        <tr><td>Compacto 1q — Tabuleiro</td><td class="tnum">—</td><td class="tnum">—</td><td class="tnum">—</td><td class="tnum">—</td><td>sem ofertas representativas</td></tr>
+      </tbody>
+    </table>
+    <div class="nota"><strong>Conclusão dos dados:</strong> o compacto do <strong>Centro é o pior entre os perfis com amostra robusta</strong> (7,7% a.a., retorno em 13 anos) — preço mediano alto (R$ 890 mil) para a diária (R$ 456). O compacto só se destaca em <strong>Morretes por R$ 600 mil</strong> (13,6%), mas com amostra pequena. <strong>Não há sustentação nos dados para priorizar compactos no Centro.</strong></div>
+  </section>
+
+  <!-- Por que e porque não -->
+  <section>
+    <div class="grid2">
+      <div>
+        <h2>Por que estas foram escolhidas</h2>
+        <ul class="lista">
+          <li><strong>3q Tabuleiro (1º):</strong> diária R$ 790 (a mais alta fora da orla) com preço de R$ 810 mil → yield 15,2%, retorno 6,6a.</li>
+          <li><strong>Compacto 1q Morretes (2º):</strong> o compacto de melhor custo-benefício — R$ 600 mil, diária R$ 533 → 13,6%.</li>
+          <li><strong>3q Morretes (3º):</strong> amostra sólida (10 anúncios + 155 ofertas) com yield 12,4% e boa liquidez de revenda.</li>
+          <li><strong>Regra comum:</strong> preço ≤ R$ 845 mil e diária ≥ R$ 533 — comprar barato onde a diária paga (quase) praia.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Por que as outras não</h2>
+        <ul class="lista">
+          <li><strong>Orla premium (MP/Centro 3-4q):</strong> preço 2-4x maior (R$ 1,9-3,7 mi) sem diária proporcional → 4-6% a.a., retorno 17-35a.</li>
+          <li><strong>Compacto Centro:</strong> R$ 890 mil para diária R$ 456 → só 7,7% (preço alto demais).</li>
+          <li><strong>4-5 quartos:</strong> diária sobe menos que o preço → 2,8-4,9%, retorno 20-35 anos.</li>
+          <li><strong>Ilhota:</strong> m² mais caro (R$ 18 mil+) e pouca oferta — fora por falta de dados.</li>
+          <li><strong>Padrão dos rejeitados:</strong> preço de compra cresce mais rápido que a diária.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grid: diária por quartos + período -->
+  <section>
+    <div class="grid2">
+      <div>
+        <h2>Quanto rende cada perfil — diária média</h2>
+        <p class="sub">Diária mediana, apartamentos (dados deduplicados)</p>
+        <table>
+          <thead><tr><th>Nº de quartos</th><th class="tnum">Anúncios</th><th class="tnum">Diária mediana</th><th class="tnum">Diária média</th><th class="tnum">Hóspedes</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1 quarto (compacto)</strong></td><td class="tnum">106</td><td class="tnum">R$ 464</td><td class="tnum">R$ 501</td><td class="tnum">≈ 3</td></tr>
+            <tr><td>2 quartos</td><td class="tnum">333</td><td class="tnum">R$ 493</td><td class="tnum">R$ 577</td><td class="tnum">≈ 6</td></tr>
+            <tr><td><strong>3 quartos</strong></td><td class="tnum">390</td><td class="tnum">R$ 700</td><td class="tnum">R$ 739</td><td class="tnum">≈ 8</td></tr>
+            <tr><td>4 quartos</td><td class="tnum">68</td><td class="tnum">R$ 1.100</td><td class="tnum">R$ 1.288</td><td class="tnum">≈ 10</td></tr>
+            <tr><td>5 quartos</td><td class="tnum">6</td><td class="tnum">R$ 1.082</td><td class="tnum">R$ 1.518</td><td class="tnum">≈ 14</td></tr>
+          </tbody>
+        </table>
+        <div class="nota">Dobrar o tamanho (2→4q) dobra a diária, mas quadruplica o preço (R$ 814 mil → R$ 3,5 mi). Por isso o retorno cai — 3q é o ponto de equilíbrio.</div>
+      </div>
+      <div>
+        <h2>Melhor período para gerar receita</h2>
+        <p class="sub">Diária mediana por mês — dados disponíveis</p>
+        <div class="saz">
+          <div class="col"><div class="val">R$ 800</div><div class="bar" style="height:100%"></div><div class="lbl">Janeiro</div></div>
+          <div class="col"><div class="val">R$ 700</div><div class="bar" style="height:87%"></div><div class="lbl">Fevereiro</div></div>
+          <div class="col"><div class="val">R$ 573</div><div class="bar" style="height:72%"></div><div class="lbl">Março</div></div>
+          <div class="col"><div class="val">R$ 480</div><div class="bar" style="height:60%"></div><div class="lbl">Abril</div></div>
+        </div>
+        <ul class="lista" style="margin-top:14px;">
+          <li><strong>Janeiro e Fevereiro</strong> = pico de receita (até 60% maior que abril).</li>
+          <li><strong>Sexta e sábado</strong> pagam ~5% a mais — precificação dinâmica vale.</li>
+          <li><strong>Comprar:</strong> maio a agosto. <strong>Operar:</strong> novembro a fevereiro.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recomendação operacional -->
+  <section>
+    <h2>Recomendação operacional — começar amanhã</h2>
+    <table>
+      <thead><tr><th style="width:330px">Prioridade</th><th>Perfil / Bairro</th><th>Retorno esperado</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1 — Validar + comprar</strong></td><td><strong>3 quartos — Tabuleiro dos Oliveiras</strong> (~R$ 810 mil)</td><td>15,2% a.a. • retorno em 6,6 anos • confirmar amostra local</td></tr>
+        <tr><td><strong>2 — Comprar</strong></td><td><strong>3 quartos — Morretes</strong> (~R$ 845 mil)</td><td>12,4% a.a. • retorno em 8,1 anos • melhor amostra/liquidez</td></tr>
+        <tr><td><strong>3 — Comprar (se validada)</strong></td><td><strong>1 quarto (compacto) — Morretes</strong> (~R$ 600 mil)</td><td>13,6% a.a. • retorno em 7,4 anos • amostra pequena</td></tr>
+        <tr><td><strong>4 — Alternativa volume</strong></td><td><strong>2 quartos — Morretes</strong> (~R$ 790 mil)</td><td>9,4% a.a. • retorno em 10,7 anos • imensa liquidez (1.044 ofertas)</td></tr>
+        <tr><td>Evitar</td><td>Compacto Centro, orla premium, 4+ quartos</td><td>2,8% a 7,7% • retorno 13 a 35 anos</td></tr>
+      </tbody>
+    </table>
+    <div class="nota"><strong>Regra de ouro:</strong> comprar se o preço for compatível com a diária do perfil — 3q a ≤ R$ 850 mil com diária ≥ R$ 680; compacto a ≤ R$ 700 mil com diária ≥ R$ 500. Fugir de preços >> média do bairro.</div>
+  </section>
+
+  <!-- Metodologia -->
+  <section>
+    <h2>Metodologia e garantia de precisão</h2>
+    <p class="sub">Rastreabilidade total dos cálculos</p>
+    <ul class="lista">
+      <li><strong>Fontes (data/):</strong> Details (4.441), Mesh (4.441), Hosts (4.440), Price (118.839), VivaReal (8.329).</li>
+      <li><strong>Deduplicação de preço:</strong> por par (listing, data) usamos a mediana → 59.040 pares distintos. Sem dupla contagem de noites.</li>
+      <li><strong>Join:</strong> Price→Details→Mesh→Hosts (lado locação); VivaReal (lado venda). Somente apartamentos.</li>
+      <li><strong>Custos (realistas, medianas):</strong> condomínio R$ 600/mês, IPTU R$ 1.500/ano, manutenção R$ 2.500/ano, comissão 15%.</li>
+      <li><strong>Ocupação 55%</strong> (hipótese ajustável). Receita = diária × 365 × ocupação. Yield = receita líquida ÷ preço.</li>
+    </ul>
+    <div class="nota"><strong>Limitações:</strong> diárias cobrem apenas jan–abr/2025. Ocupação 55% e custos são premissas realistas — confirmar por imóvel. Amostras pequenas marcadas (Tabuleiro 3q, compacto Morretes) devem ser validadas presencialmente.</div>
+  </section>
+
+</div>
+
+<footer>Ranking elaborado com os dados-fonte auditados de data/ • Itapema (SC) • Decisão de alocação de capital em short stay • Repro­duzível via analysis/ps/ranking_maestro.ps1</footer>
+</body>
+</html>
