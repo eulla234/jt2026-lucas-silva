@@ -1,3 +1,5 @@
+Link do vídeo de apresentação: https://drive.google.com/file/d/1v91pOf5-2Rj7Xr2u1AbD0FRuGzJvwLi-/view?usp=sharing 
+
 # Análise de Investimento Imobiliário — Itapema/SC
 ## Desafio Jovens Talentos AI Builder — Seazone
 
